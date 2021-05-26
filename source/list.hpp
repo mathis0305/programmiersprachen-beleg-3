@@ -178,15 +178,30 @@ class List {
         rhs.size_ = s;
     }
 
-    bool operator==(List const& rhs) const
-    {
-      //TODO: operator== (Aufgabe 3.8)
+    // == operator
+    bool operator==(List const& rhs) const {
+        if (empty() || rhs.empty()) {
+            throw "List is empty";
+        }
+        if (size_ != rhs.size_) {
+            return false;
+        }
+        auto node1 = first_;
+        auto node2 = rhs.first_;
+        while (node1 != nullptr) {
+            if (node1->value != node2->value) {
+                return false;
+            }
+            node1 = node1->next;
+            node2 = node2->next;
+        }
+        return true;
     }
 
+    // != operator
     bool operator!=(List const& rhs) const
     {
-      //TODO: operator!= (Aufgabe 3.8)
-      // make use of operator==
+        return !(*this == rhs);
     }
 
     /* ... */
@@ -365,8 +380,13 @@ class List {
 
 
 /* ... */
-//TODO: Freie Funktion reverse 
-//(Aufgabe 3.7 - Teil 2, benutzt Member-Funktion reverse)
+// free function reverse
+template <typename T>
+List<T> reverse(List<T> const& list) {
+    List<T> list2{ list };
+    list2.reverse();
+    return list2;
+}
 
 /* ... */
 //TODO: Freie Funktion operator+ (3.10 - Teil 2)

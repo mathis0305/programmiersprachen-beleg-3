@@ -145,10 +145,42 @@ TEST_CASE("test reverse method", "[reverse]") {
 	list.push_front(20);
 	list.push_front(3);
 
+	// test member function
 	list.reverse();
 
 	REQUIRE(list.front() == 30);
 	REQUIRE(list.back() == 3);
+
+	// test free function
+	List<int> list2 = reverse(list);
+
+	REQUIRE(list2.front() == 3);
+	REQUIRE(list2.back() == 30);
+}
+
+// Test 5: == and != operator
+TEST_CASE("test equality operators", "[equality]") {
+	// make test lists
+	List<int> list1{};
+	List<int> list2{};
+
+	list1.push_front(30);
+	list1.push_front(1);
+	list1.push_front(20);
+	list1.push_front(3);
+
+	list2.push_front(30);
+	list2.push_front(1);
+	list2.push_front(20);
+	list2.push_front(3);
+
+	REQUIRE(list1 == list2);
+	REQUIRE(!(list1 != list2));
+
+	list2.pop_front();
+
+	REQUIRE(!(list1 == list2));
+	REQUIRE(list1 != list2);
 }
 int main(int argc, char *argv[])
 {
