@@ -33,8 +33,8 @@ ListNode<T>* get_last_pointer(List<T> const& list_to_test) {return list_to_test.
 #include "sub_tests/back.test"
 
 //test cases for retrieving iterators
-//#include "sub_tests/begin.test"
-//#include "sub_tests/end.test"
+#include "sub_tests/begin.test"
+#include "sub_tests/end.test"
 
 //iterator tests
 /*#include "sub_tests/iterators/operator_star.test"
@@ -163,6 +163,9 @@ TEST_CASE("test equality operators", "[equality]") {
 	// make test lists
 	List<int> list1{};
 	List<int> list2{};
+
+	REQUIRE(list1 == list2);
+	REQUIRE(!(list1 != list2));
 
 	list1.push_front(30);
 	list1.push_front(1);

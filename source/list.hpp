@@ -126,9 +126,8 @@ class List {
     using const_reference = T const&;
     using iterator        = ListIterator<T>;
 
-    // not fully implemented yet
-    // TODO: do not forget about the initialiser list! (Aufgabe 3.2)
     /* ... */
+    // default constructor
     List() :
         size_{ 0 },
         first_{ nullptr },
@@ -148,7 +147,7 @@ class List {
     }
 
     // test and implement:
-    // TODO: Move-Konstruktor (Aufgabe 3.9)
+    // TODO: Move-Konstruktor (Aufgabe 3.14)
 
     //TODO: Initializer-List Konstruktor (3.10 - Teil 1)
     /* ... */
@@ -156,10 +155,6 @@ class List {
     List(std::initializer_list<T> ini_list) {
       //not implemented yet
     }
-
-    /* ... */
-    // test and implement:
-    //TODO: (unifying) Assignment operator (Aufgabe 3.6)
 
     /* ... */
     // test and implement:
@@ -180,9 +175,6 @@ class List {
 
     // == operator
     bool operator==(List const& rhs) const {
-        if (empty() || rhs.empty()) {
-            throw "List is empty";
-        }
         if (size_ != rhs.size_) {
             return false;
         }
@@ -215,14 +207,16 @@ class List {
     ListIterator<T> begin() {
       //TODO: begin-Method returning an Iterator to the 
       //      first element in the List (Aufgabe 3.11)
-      return {};
+        iterator begin{ first_ };
+      return begin;
     }
 
     /* ... */
     ListIterator<T> end() {
       //TODO: end-Method returning an Iterator to element after (!) 
       //      the last element in the List (Aufgabe 3.11)
-      return {};
+        iterator end{ nullptr };
+      return end;
     }
 
     /* ... */ 
