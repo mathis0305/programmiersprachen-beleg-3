@@ -167,8 +167,10 @@ class List {
 
     /* ... */
     ~List() {
-      //TODO: Implement via clear-Method (Aufgabe 3.4)
-    } //can not really be tested
+        clear();
+        delete first_;
+        delete last_;
+    }
 
     /* ... */
     ListIterator<T> begin() {
@@ -186,7 +188,11 @@ class List {
 
     /* ... */ 
     // test and implement:
-    //TODO: clear()-Method (Aufgabe 3.4)
+    void clear() {
+        while (size_ > 0) {
+            pop_front();
+        }
+    }
 
 
     /* ... */
@@ -202,7 +208,6 @@ class List {
 
     /* ... */
     void push_front(T const& element) {
-      // TODO: push_front-method (Aufgabe 3.3)
 
         ListNode<T>* node = new ListNode<T> { element, nullptr, first_ };
         if (empty()) {
@@ -217,7 +222,6 @@ class List {
 
     /* ... */
     void push_back(T const& element) {
-      // TODO: push_back-method (Aufgabe 3.3)
 
         ListNode<T>* node = new ListNode<T>{ element, last_, nullptr };
         if (empty()) {
@@ -253,7 +257,6 @@ class List {
       }
 
 
-      // TODO: remainder of pop_front-method (Aufgabe 3.3)
     }
 
     /* ... */
@@ -276,8 +279,6 @@ class List {
                 last_->next = nullptr;
                 size_ -= 1;
             }
-
-            // TODO: remainder of pop_back-method (Aufgabe 3.3)
         }
     }
     /* ... */
@@ -288,7 +289,6 @@ class List {
       else {
           return first_->value;
       }
-      // TODO: remainder of front-method (Aufgabe 3.3)
     }
 
     /* ... */
@@ -299,7 +299,6 @@ class List {
       else {
           return last_->value;
       }
-      // TODO: remainder of back-method (Aufgabe 3.3)
     }
 
     /* ... */
@@ -310,9 +309,7 @@ class List {
 
 
     /* ... */
-    std::size_t size() const{
-
-      // TODO: size-method (Aufgabe 3.2)      
+    std::size_t size() const{ 
       return size_;
   };
 
