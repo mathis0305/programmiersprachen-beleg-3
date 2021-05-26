@@ -134,16 +134,15 @@ class List {
         first_{ nullptr },
         last_{ nullptr } {}
 
-    // test and implement:
-    //TODO: Copy-Konstruktor using Deep-Copy semantics (Aufgabe 3.5)
-    List(List const& list) :
+    // copy constructor
+    List(List<T> const& list) :
         size_{ 0 },
         first_{ nullptr },
         last_{ nullptr }
     {
         ListNode<T>* node = list.first_;
         while (nullptr != node) {
-            push_front(node->value);
+            push_back(node->value);
             node = node->next;
         }
     }
@@ -164,6 +163,20 @@ class List {
 
     /* ... */
     // test and implement:
+
+    void operator=(List<T> rhs) {
+        auto node1 = first_;
+        first_ = rhs.first_;
+        rhs.first_ = node1;
+
+        auto node2 = last_;
+        last_ = rhs.last_;
+        rhs.last_ = node2;
+
+        auto s = size_;
+        size_ = rhs.size_;
+        rhs.size_ = s;
+    }
 
     bool operator==(List const& rhs) const
     {
@@ -201,7 +214,9 @@ class List {
     // test and implement:
     void clear() {
         while (size_ > 0) {
-            pop_front();
+            if (first_ != nullptr) {
+                pop_front();
+            }
         }
     }
 
@@ -266,8 +281,6 @@ class List {
               size_ -= 1;
           }
       }
-
-
     }
 
     /* ... */
@@ -331,6 +344,7 @@ class List {
     ListNode<T>* first_;
     ListNode<T>* last_;
 };
+
 
 /* ... */
 //TODO: Freie Funktion reverse 
