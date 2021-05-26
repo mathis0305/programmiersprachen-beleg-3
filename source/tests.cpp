@@ -134,6 +134,22 @@ TEST_CASE("test unifying assignment operator", "[uao]") {
 	REQUIRE(list2.back() == list2.back());
 	REQUIRE(size1 == size2);
 }
+
+// Test 4: reverse method
+TEST_CASE("test reverse method", "[reverse]") {
+	// make test list
+	List<int> list{};
+
+	list.push_front(30);
+	list.push_front(1);
+	list.push_front(20);
+	list.push_front(3);
+
+	list.reverse();
+
+	REQUIRE(list.front() == 30);
+	REQUIRE(list.back() == 3);
+}
 int main(int argc, char *argv[])
 {
   return Catch::Session().run(argc, argv);

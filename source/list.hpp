@@ -229,7 +229,25 @@ class List {
 
     /* ... */
 
-    //TODO: member function reverse (Aufgabe 3.7 - Teil 1)
+    // member funcion reverse
+    void reverse() {
+        if (empty()) {
+            throw "List is empty";
+        }
+        else {
+            auto node1 = first_;
+            first_ = last_;
+            last_ = node1;
+
+            auto node2 = last_;
+            while (nullptr != node2) {
+                auto node3 = node2->next;
+                node2->next = node2->prev;
+                node2->prev = node3;
+                node2 = node3;
+            }
+        }
+    }
 
 
     /* ... */
