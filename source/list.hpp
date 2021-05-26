@@ -203,11 +203,31 @@ class List {
     /* ... */
     void push_front(T const& element) {
       // TODO: push_front-method (Aufgabe 3.3)
+
+        ListNode<T>* node = new ListNode<T> { element, nullptr, first_ };
+        if (empty()) {
+            last_ = node;
+        }
+        else {
+            first_->prev = node;
+        }
+        first_ = node;
+        size_ += 1;
     }
 
     /* ... */
     void push_back(T const& element) {
       // TODO: push_back-method (Aufgabe 3.3)
+
+        ListNode<T>* node = new ListNode<T>{ element, last_, nullptr };
+        if (empty()) {
+            first_ = node;
+        }
+        else {
+            last_->next = node;
+        }
+        last_ = node;
+        size_ += 1;
     }
 
     /* ... */
@@ -215,25 +235,59 @@ class List {
       if(empty()) {
         throw "List is empty";
       }
+      else {
+          if (size_ == 1) {
+              delete first_->next;
+              delete first_->prev;
+              first_ = nullptr;
+              last_ = nullptr;
+              size_ -= 1;
+          }
+          else {
+              first_ = first_->next;
+              delete first_->prev->next;
+              delete first_->prev->prev;
+              first_->prev = nullptr;
+              size_ -= 1;
+          }
+      }
+
 
       // TODO: remainder of pop_front-method (Aufgabe 3.3)
     }
 
     /* ... */
     void pop_back() {
-      if(empty()) {
-        throw "List is empty";
-      }
+        if (empty()) {
+            throw "List is empty";
+        }
+        else {
+            if (size_ == 1) {
+                delete first_->next;
+                delete first_->prev;
+                first_ = nullptr;
+                last_ = nullptr;
+                size_ -= 1;
+            }
+            else {
+                last_ = last_->prev;
+                delete last_->next->prev;
+                delete last_->next->next;
+                last_->next = nullptr;
+                size_ -= 1;
+            }
 
-      // TODO: remainder of pop_back-method (Aufgabe 3.3)
+            // TODO: remainder of pop_back-method (Aufgabe 3.3)
+        }
     }
-
     /* ... */
     T& front() {
       if(empty()) {
         throw "List is empty";
       }
-
+      else {
+          return first_->value;
+      }
       // TODO: remainder of front-method (Aufgabe 3.3)
     }
 
@@ -242,7 +296,9 @@ class List {
       if(empty()) {
         throw "List is empty";
       }
-
+      else {
+          return last_->value;
+      }
       // TODO: remainder of back-method (Aufgabe 3.3)
     }
 
