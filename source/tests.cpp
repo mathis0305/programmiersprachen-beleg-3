@@ -80,6 +80,30 @@ TEST_CASE("test clear() method", "[clear]") {
 	REQUIRE(nullptr == last_pointer);
 }
 
+// Test 2: copy-constructor
+TEST_CASE("test copy-constructor", "[copy]") {
+	// make test list
+	List<int> list1{};
+
+	list1.push_front(5);
+	list1.push_front(30);
+	list1.push_front(1);
+
+	List<int> list2{list1};
+
+	auto first_pointer1 = get_first_pointer(list1);
+	auto last_pointer1 = get_last_pointer(list1);
+	auto size1 = get_size(list1);
+
+	auto first_pointer2 = get_first_pointer(list2);
+	auto last_pointer2 = get_last_pointer(list2);
+	auto size2 = get_size(list2);
+
+	REQUIRE(first_pointer1 != first_pointer2);
+	REQUIRE(last_pointer1 != last_pointer2);
+	REQUIRE(size1 == size2);
+
+}
 int main(int argc, char *argv[])
 {
   return Catch::Session().run(argc, argv);

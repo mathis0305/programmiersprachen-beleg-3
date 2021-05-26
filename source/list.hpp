@@ -136,6 +136,17 @@ class List {
 
     // test and implement:
     //TODO: Copy-Konstruktor using Deep-Copy semantics (Aufgabe 3.5)
+    List(List const& list) :
+        size_{ 0 },
+        first_{ nullptr },
+        last_{ nullptr }
+    {
+        ListNode<T>* node = list.first_;
+        while (nullptr != node) {
+            push_front(node->value);
+            node = node->next;
+        }
+    }
 
     // test and implement:
     // TODO: Move-Konstruktor (Aufgabe 3.9)
