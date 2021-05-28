@@ -35,21 +35,16 @@ struct ListIterator {
     if(nullptr == node) {
       throw "Iterator does not point to valid node";
     }
-
-    //TODO: remaining implementation of derefenciation of 
-    //      iterator using operator* (Aufgabe 3.12 - Teil 1)
-
-  } //call *it
+    return node->value;
+  }
 
   /* DESCRIPTION  operator->() */
   T* operator->() const {
     if(nullptr == node) {
       throw "Iterator does not point to valid node";
     }
-
-    //TODO: remaining implementation of derefenciation of 
-    //      iterator using operator-> (Aufgabe 3.12 - Teil 2)
-  }  //call it->method() or it->member
+    return &node->value;
+  }
 
 
   /* PREINCREMENT, call: ++it, advances one element forward */
@@ -57,7 +52,9 @@ struct ListIterator {
     if(nullptr == node) {
       throw "Iterator does not point to valid node";
     }
-
+    node = node->next;
+    return *this;
+    
     //TODO: Implement Postincrement-Operation for Iterator
     //      (Aufgabe 3.12 - Teil 3)
     
@@ -69,6 +66,9 @@ struct ListIterator {
     if(nullptr == node) {
       throw "Iterator does not point to valid node";
     }
+    auto copy = *this;
+    node = node->next;
+    return copy;
 
     //TODO: Implement Postincrement-Operation for Iterator
     //      (Aufgabe 3.12 - Teil 4)
@@ -81,6 +81,9 @@ struct ListIterator {
     //TODO: Implement Equality-Operation for Iterator
     //      (Aufgabe 3.12 - Teil 5)
     // Iterators should be the same if they refer to the same node
+      if (node == x.node) {
+          return true;
+      }
     return false;
   } // call it: == it
 
@@ -89,7 +92,8 @@ struct ListIterator {
     //TODO: Implement Inequality-Operation for Iterator  
     //      (Aufgabe 3.12 - Teil 6)
     // Reuse operator==
-    return false;
+      
+    return !(*this == x);
   } // call it: != it
 
   /* Advances Iterator */
@@ -232,6 +236,16 @@ class List {
 
     /* ... */
     //TODO: member function insert (Aufgabe 3.13)
+    ListIterator<T> insert(ListNode<T> &node, ListIterator<T> &it) {
+        iterator prev{ it.node->prev };
+        it.node->prev = node;
+        node->next = it.node;
+        node->prev = prev.node;
+        prev.node->next = node;
+        iterator new_it { node };
+        return new_it;
+    }
+
 
     /* ... */
     //TODO: member function insert (Aufgabe 3.14)
