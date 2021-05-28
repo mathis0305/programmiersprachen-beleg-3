@@ -152,6 +152,16 @@ class List {
 
     // test and implement:
     // TODO: Move-Konstruktor (Aufgabe 3.14)
+    List(List<T>&& rhs) :
+        size_{ 0 },
+        first_{ nullptr },
+        last_{ nullptr }    
+    {
+        *this = rhs;
+        rhs.first_ = nullptr;
+        rhs.last_ = nullptr;
+        rhs.size_ = 0;
+    }
 
     //TODO: Initializer-List Konstruktor (3.10 - Teil 1)
     /* ... */
