@@ -45,7 +45,6 @@ ListNode<T>* get_last_pointer(List<T> const& list_to_test) {return list_to_test.
 
 // Test 1: clear()
 TEST_CASE("test clear() method", "[clear]") {
-	// make test list
 	List<int> list{};
 	
 	list.clear();
@@ -80,7 +79,6 @@ TEST_CASE("test clear() method", "[clear]") {
 
 // Test 2: copy-constructor
 TEST_CASE("test copy-constructor", "[copy]") {
-	// make test list
 	List<int> list1{};
 
 	list1.push_front(5);
@@ -105,7 +103,6 @@ TEST_CASE("test copy-constructor", "[copy]") {
 
 // Test 3: unifying assignment operator
 TEST_CASE("test unifying assignment operator", "[uao]") {
-	// make test lists
 	List<int> list1{};
 	List<int> list2{};
 
@@ -135,7 +132,6 @@ TEST_CASE("test unifying assignment operator", "[uao]") {
 
 // Test 4: reverse method
 TEST_CASE("test reverse method", "[reverse]") {
-	// make test list
 	List<int> list{};
 
 	list.push_front(30);
@@ -158,7 +154,6 @@ TEST_CASE("test reverse method", "[reverse]") {
 
 // Test 5: == and != operator
 TEST_CASE("test equality operators", "[equality]") {
-	// make test lists
 	List<int> list1{};
 	List<int> list2{};
 
